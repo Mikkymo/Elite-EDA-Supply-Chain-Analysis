@@ -1,131 +1,31 @@
-# 📦 Supply Chain Performance Analysis
-### Exploratory Data Analysis (EDA) of 3,000 Supply Chain Orders (2022–2023)
+# Supply chain data-quality and cost analysis
 
-![Python](https://img.shields.io/badge/Python-3.x-blue)
-![Pandas](https://img.shields.io/badge/Pandas-Data%20Analysis-success)
-![Matplotlib](https://img.shields.io/badge/Matplotlib-Visualization-orange)
-![Seaborn](https://img.shields.io/badge/Seaborn-EDA-purple)
+**Question:** What can a procurement analyst responsibly conclude when an order export has incomplete dates and inconsistent values?
 
-## 📌 Project Overview
+This reproducible Python case study audits **3,000 simulated orders**. The file supplied as `cleaned_supply_chain_dataset.csv` is incomplete: **2,683 order dates** and **296 delivery dates** are missing. The revised notebook focuses on data quality and recorded cost by category, areas supported by the available data. Earlier monthly and delivery-speed charts are retained in `archive/` for provenance but are not presented as validated results.
 
-Supply chains generate massive volumes of operational data, but without proper analysis, organizations struggle to identify inefficiencies that increase costs and delay deliveries.
+![Data-quality and cost overview](images/data-quality-overview.png)
 
-In this project, I conducted an **Exploratory Data Analysis (EDA)** on a supply chain dataset containing **3,000 procurement and delivery records** from **January 2022 to December 2023**. The objective was to uncover operational trends, identify performance bottlenecks, evaluate supplier efficiency, and generate insights that support data-driven supply chain decisions.
+## Verified findings
 
-This project demonstrates practical data analytics skills using Python for business problem solving.
+| Check | Result | Implication |
+| --- | ---: | --- |
+| Missing order dates | 2,683 / 3,000 (89.4%) | Monthly order trends cannot be reliably reproduced |
+| Missing delivery dates | 296 / 3,000 (9.9%) | Exclude or recover source records before timing analysis |
+| Recorded cost differs from quantity × unit price by >0.02 | 154 rows (5.1%) | Validate discounts, adjustments or input errors before using a calculated margin |
+| Recorded cost attributed to Motors | 66,671,196 dataset units (39.2% of total) | Investigate category concentration; currency is unspecified |
 
----
+Supplier spellings also vary (`Suppliera` and `Supplier A`, for example); the notebook standardises these in a working column. Cost comparisons describe the simulated dataset and are not evidence of a real company's procurement savings.
 
-## 🎯 Business Objectives
+## Reproduce
 
-The analysis aimed to answer questions such as:
+Run `supply-chain-eda.ipynb` from this repository's root in Jupyter or VS Code. It requires Python, pandas and a notebook environment. The file `images/data-quality-overview.png` is a static summary of the source CSV. Do not use the older time charts until a complete raw export is available.
 
-- Which suppliers perform most consistently?
-- How do lead times vary across suppliers and products?
-- Which product categories generate the highest procurement costs?
-- Are there seasonal procurement trends?
-- What factors contribute most to delivery delays?
-- Are there unusual patterns or outliers that require attention?
+## Files
 
----
+- [`supply-chain-eda.ipynb`](supply-chain-eda.ipynb): reproducible quality and cost analysis.
+- [`cleaned_supply_chain_dataset.csv`](cleaned_supply_chain_dataset.csv): provided simulated data; its filename does not imply that dates are complete.
+- [`images/data-quality-overview.png`](images/data-quality-overview.png): current verified summary.
+- [`archive/original-eda-notebook.ipynb`](archive/original-eda-notebook.ipynb) and `archive/legacy-visuals/`: previous analysis retained for traceability; it referenced a raw CSV not supplied here.
 
-## 📊 Dataset
-
-- **Records:** 3,000 Supply Chain Orders
-- **Period:** January 2022 – December 2023
-- **Industry:** Supply Chain / Procurement
-- **Type:** Simulated Business Dataset
-
-Key variables include:
-
-- Supplier
-- Product Category
-- Quantity Ordered
-- Total Cost
-- Lead Time
-- Order Date
-- Delivery Status
-- Region
-
----
-
-## 🛠️ Tools & Technologies
-
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
-
----
-
-## 🔍 Analysis Performed
-
-The project includes:
-
-- Data Cleaning
-- Data Quality Assessment
-- Univariate Analysis
-- Bivariate Analysis
-- Multivariate Analysis
-- Distribution Analysis
-- Correlation Analysis
-- Business Insight Generation
-
----
-
-## 📈 Key Insights
-
-Some insights generated include:
-
-- Supplier performance comparison
-- Procurement cost patterns
-- Lead time distribution
-- Product demand trends
-- Regional supply chain performance
-- Identification of operational bottlenecks
-- Outlier detection for unusual procurement activities
-
----
-
-## 📂 Repository Structure
-
-```
-├── data/
-├── notebook/
-├── images/
-├── README.md
-└── requirements.txt
-```
-
----
-
-## 🚀 Business Impact
-
-The findings from this analysis can help organizations:
-
-- Improve supplier selection
-- Reduce procurement costs
-- Shorten delivery lead times
-- Detect operational inefficiencies
-- Support strategic sourcing decisions
-- Enhance overall supply chain performance
-
----
-
-## 👤 About Me
-
-I'm **Mike**, a Data Analyst passionate about transforming raw business data into actionable insights through analytics and visualization.
-
-### Connect with me
-
-**Portfolio:** https://mikkymo.github.io/portfolio/
-
-**LinkedIn:** https://linkedin.com/in/ogochukwuemeka
-
-**GitHub:** https://github.com/Mikkymo
-
----
-
-⭐ If you found this project useful, feel free to star the repository.
+**Analyst:** [Chukwuemeka Ogo](https://mikkymo.github.io/portfolio/) · [LinkedIn](https://www.linkedin.com/in/ogochukwuemeka/)
